@@ -20,5 +20,5 @@ export const siteConfig = {
     { label: 'Contact', href: '#contact' },
   ],
 
-  resumeUrl: '/resume.pdf', // drop your PDF in /public
+  resumeUrl: 'public/resume.pdf', // drop your PDF in /public
 };
