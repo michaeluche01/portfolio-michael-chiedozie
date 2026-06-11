@@ -54,7 +54,7 @@ export default function Work() {
           initial="hidden"
           animate={headerInView ? 'visible' : 'hidden'}
         >
-          <span className={styles.sectionLabel}>02. work</span>
+          <span className={styles.sectionLabel}>03. work</span>
           <h2 id="work-heading" className={styles.sectionHeading}>
             Selected Projects
           </h2>
