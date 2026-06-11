@@ -139,7 +139,7 @@ export default function Hero() {
             <pre className={styles.termPre}>
               <TL><TK>const </TK><TV>michael</TV>{' = {'}</TL>
               <TL i><TKy>role    </TKy><TP>: </TP><TS>"Mobile Engineer"</TS><TP>,</TP></TL>
-              <TL i><TKy>primary </TKy><TP>: </TP><TS>['Flutter', 'Dart']</TS><TP>,</TP></TL>
+              <TL i><TKy>primary </TKy><TP>: </TP><TS>['Flutter', 'React']</TS><TP>,</TP></TL>
               <TL i><TKy>backend </TKy><TP>: </TP><TS>['Python', 'FastAPI']</TS><TP>,</TP></TL>
               <TL i><TKy>shipped </TKy><TP>: </TP><TS>"10K+ active users"</TS><TP>,</TP></TL>
               <TL i><TKy>building</TKy><TP>: </TP><TS>"Throve SaaS"</TS><TP>,</TP></TL>
