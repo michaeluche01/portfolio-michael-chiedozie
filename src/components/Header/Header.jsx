@@ -78,7 +78,7 @@ export default function Header() {
 
         {/* ── Logo ─────────────────────────────────────────────────────── */}
         <a href="#hero" className={styles.logo} aria-label="Michael Chiedozie — Home" onClick={closeMenu}>
-          <img src="public\logo_white.png" alt="Michael Chiedozie Logo" className={styles.logoImage} />
+          <img src="public\logo_white.png"  className={styles.logoImage} />
         </a>
 
         {/* ── Desktop nav links ─────────────────────────────────────────── */}
