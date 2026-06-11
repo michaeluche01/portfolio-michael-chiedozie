@@ -1,0 +1,170 @@
+@use 'variables' as *;
+
+// ─────────────────────────────────────────────
+// RESPONSIVE BREAKPOINTS
+// ─────────────────────────────────────────────
+@mixin respond-to($bp) {
+  @if $bp == xs    { @media (max-width: #{$bp-xs})  { @content; } }
+  @else if $bp == sm    { @media (max-width: #{$bp-sm})  { @content; } }
+  @else if $bp == md    { @media (max-width: #{$bp-md})  { @content; } }
+  @else if $bp == lg    { @media (max-width: #{$bp-lg})  { @content; } }
+  @else if $bp == xl    { @media (max-width: #{$bp-xl})  { @content; } }
+  // min-width variants
+  @else if $bp == sm-up { @media (min-width: #{$bp-sm})  { @content; } }
+  @else if $bp == md-up { @media (min-width: #{$bp-md})  { @content; } }
+  @else if $bp == lg-up { @media (min-width: #{$bp-lg})  { @content; } }
+}
+
+// ─────────────────────────────────────────────
+// LAYOUT
+// ─────────────────────────────────────────────
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $container-pad;
+}
+
+@mixin section-spacing {
+  padding-block: $section-pad-y;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// ─────────────────────────────────────────────
+// TYPOGRAPHY
+// ─────────────────────────────────────────────
+@mixin heading-display {
+  font-family: $font-display;
+  font-weight: $weight-black;
+  letter-spacing: $letter-tight;
+  line-height: $line-tight;
+}
+
+@mixin heading-section {
+  font-family: $font-display;
+  font-weight: $weight-bold;
+  font-size: $text-2xl;
+  letter-spacing: $letter-tight;
+  line-height: $line-snug;
+  color: $text-primary;
+}
+
+@mixin label-mono {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  font-weight: $weight-regular;
+  color: $accent;
+  letter-spacing: $letter-wide;
+  text-transform: uppercase;
+}
+
+@mixin body-text {
+  font-family: $font-body;
+  font-size: $text-md;
+  font-weight: $weight-regular;
+  color: $text-secondary;
+  line-height: $line-relaxed;
+}
+
+// ─────────────────────────────────────────────
+// VISUAL EFFECTS
+// ─────────────────────────────────────────────
+@mixin card-base {
+  background: $surface-1;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  transition: border-color $transition-base,
+              box-shadow $transition-base,
+              transform $transition-base;
+
+  &:hover {
+    border-color: $border-accent;
+    box-shadow: $shadow-card, $shadow-accent;
+    transform: translateY(-3px);
+  }
+}
+
+@mixin accent-line($width: 3rem) {
+  content: '';
+  display: block;
+  width: $width;
+  height: 2px;
+  background: $accent;
+  border-radius: $radius-full;
+}
+
+@mixin noise-overlay {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: $z-raised;
+  }
+}
+
+@mixin gradient-text($from: $accent, $to: #a78bfa) {
+  background: linear-gradient(135deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ─────────────────────────────────────────────
+// INTERACTIVE STATES
+// ─────────────────────────────────────────────
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 3px;
+    border-radius: $radius-sm;
+  }
+}
+
+@mixin link-accent {
+  color: $accent;
+  text-decoration: none;
+  position: relative;
+  transition: color $transition-fast;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: $accent;
+    transition: width $transition-base;
+  }
+
+  &:hover::after { width: 100%; }
+}
+
+// ─────────────────────────────────────────────
+// SCROLLBAR (webkit)
+// ─────────────────────────────────────────────
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar        { width: 6px; }
+  &::-webkit-scrollbar-track  { background: $bg-secondary; }
+  &::-webkit-scrollbar-thumb  { background: $surface-2; border-radius: $radius-full; }
+  &::-webkit-scrollbar-thumb:hover { background: $accent-dim; }
+}

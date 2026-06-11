@@ -1,0 +1,164 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ─────────────────────────────────────────────
+// RESET
+// ─────────────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; // offset for fixed nav
+  @include custom-scrollbar;
+}
+
+body {
+  font-family: $font-body;
+  font-size: $text-base;
+  font-weight: $weight-regular;
+  color: $text-primary;
+  background-color: $bg-primary;
+  line-height: $line-normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+input, textarea, select {
+  font: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  font-weight: $weight-bold;
+  line-height: $line-tight;
+  letter-spacing: $letter-tight;
+  color: $text-primary;
+}
+
+// ─────────────────────────────────────────────
+// SELECTION
+// ─────────────────────────────────────────────
+::selection {
+  background: $accent-dim;
+  color: $accent;
+}
+
+// ─────────────────────────────────────────────
+// LAYOUT UTILITIES
+// ─────────────────────────────────────────────
+.container {
+  @include container;
+}
+
+.section {
+  @include section-spacing;
+  position: relative;
+}
+
+// ─────────────────────────────────────────────
+// SECTION HEADING PATTERN
+// Used across About, Skills, Work, etc.
+// ─────────────────────────────────────────────
+.section-label {
+  @include label-mono;
+  display: block;
+  margin-bottom: $space-3;
+}
+
+.section-heading {
+  @include heading-section;
+  margin-bottom: $space-6;
+
+  &::after {
+    @include accent-line(4rem);
+    margin-top: $space-4;
+  }
+}
+
+// ─────────────────────────────────────────────
+// BUTTONS
+// ─────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  border-radius: $radius-md;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  font-weight: $weight-medium;
+  letter-spacing: $letter-wide;
+  transition: all $transition-base;
+  @include focus-ring;
+
+  &--primary {
+    background: transparent;
+    color: $accent;
+    border: 1px solid $accent;
+
+    &:hover {
+      background: $accent-dim;
+      box-shadow: $shadow-accent;
+      transform: translateY(-2px);
+    }
+
+    &:active { transform: translateY(0); }
+  }
+
+  &--ghost {
+    color: $text-secondary;
+    border: 1px solid $border;
+
+    &:hover {
+      color: $text-primary;
+      border-color: $text-muted;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// SCROLLBAR (global)
+// ─────────────────────────────────────────────
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: $bg-primary; }
+::-webkit-scrollbar-thumb  { background: $surface-2; border-radius: $radius-full; }
+::-webkit-scrollbar-thumb:hover { background: $accent-dim; }
+
+// ─────────────────────────────────────────────
+// REDUCED MOTION
+// ─────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
