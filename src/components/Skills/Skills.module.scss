@@ -1,0 +1,185 @@
+@use 'variables' as *;
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+.section {
+  padding-block: $section-pad-y;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $container-pad;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.header {
+  margin-bottom: clamp($space-10, 6vw, $space-16);
+}
+
+.sectionLabel {
+  display: block;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $accent;
+  letter-spacing: $letter-wide;
+  margin-bottom: $space-3;
+}
+
+.sectionHeading {
+  font-family: $font-display;
+  font-weight: $weight-black;
+  font-size: clamp($text-2xl, 5vw, $text-4xl);
+  color: $text-primary;
+  letter-spacing: $letter-tight;
+  line-height: $line-tight;
+  margin: 0;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 4rem;
+    height: 2px;
+    background: $accent;
+    border-radius: $radius-full;
+    margin-top: $space-5;
+  }
+}
+
+// ─── Primary tech stack row ───────────────────────────────────────────────────
+.techRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+  margin-bottom: clamp($space-10, 6vw, $space-16);
+  padding-bottom: clamp($space-10, 6vw, $space-16);
+  border-bottom: 1px solid $border;
+}
+
+.primaryTag {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $accent;
+  padding: $space-2 $space-4;
+  border-radius: $radius-full;
+  border: 1px solid rgba(100, 255, 218, 0.25);
+  background: rgba(100, 255, 218, 0.06);
+  letter-spacing: $letter-wide;
+  white-space: nowrap;
+  transition: background $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    background: rgba(100, 255, 218, 0.12);
+    border-color: rgba(100, 255, 218, 0.45);
+  }
+}
+
+// ─── 2×2 grid ─────────────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-6;
+
+  @media (max-width: #{$bp-sm}) {
+    grid-template-columns: 1fr;
+    gap: $space-5;
+  }
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.card {
+  background: $surface-1;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  padding: $space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base,
+    transform $transition-base;
+
+  &:hover {
+    border-color: rgba(100, 255, 218, 0.22);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(100, 255, 218, 0.06);
+    transform: translateY(-4px);
+  }
+}
+
+// ─── Card header ─────────────────────────────────────────────────────────────
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding-bottom: $space-4;
+  border-bottom: 1px solid $border;
+}
+
+.cardIcon {
+  // Uses --card-accent CSS var set inline per card
+  color: var(--card-accent, #{$accent});
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-weight: $weight-bold;
+  font-size: $text-base;
+  color: $text-primary;
+  letter-spacing: $letter-tight;
+  margin: 0;
+  flex: 1;
+}
+
+.cardCount {
+  font-family: $font-mono;
+  font-size: $text-xs;
+  color: var(--card-accent, #{$accent});
+  background: rgba(100, 255, 218, 0.06);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  padding: 2px $space-2;
+  border-radius: $radius-full;
+  letter-spacing: $letter-wide;
+  flex-shrink: 0;
+
+  // Tint the count badge to match the card's accent colour
+  background: color-mix(in srgb, var(--card-accent, #{$accent}) 8%, transparent);
+  border-color: color-mix(in srgb, var(--card-accent, #{$accent}) 25%, transparent);
+  color: var(--card-accent, #{$accent});
+}
+
+// ─── Skill tags list ─────────────────────────────────────────────────────────
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag {
+  font-family: $font-mono;
+  font-size: $text-xs;
+  color: $text-secondary;
+  padding: 4px $space-3;
+  border-radius: $radius-sm;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.03);
+  letter-spacing: $letter-wide;
+  white-space: nowrap;
+  transition: color $transition-fast, border-color $transition-fast, background $transition-fast;
+  line-height: 1.5;
+
+  &:hover {
+    color: $text-primary;
+    border-color: rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.05);
+  }
+}
