@@ -95,7 +95,7 @@ export default function Hero() {
             I design and ship Flutter applications — and build the backend systems
             that power them. Delivered fintech products to{' '}
             <strong>10,000+ active users</strong> and currently architecting{' '}
-            <strong>Throve</strong>, a multi-tenant SaaS platform, as a solo engineer.
+            <strong>Throve</strong>, a multi-tenant SaaS platform, as a Founding engineer.
           </motion.p>
 
           {/* CTAs */}
