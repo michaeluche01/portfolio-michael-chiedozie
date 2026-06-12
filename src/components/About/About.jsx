@@ -38,7 +38,7 @@ const EXPERIENCE = [
 ];
 
 const FACTS = [
-  { Icon: FiMapPin,     text: 'Abuja, Nigeria 🇳🇬' },
+  { Icon: FiMapPin,     text: 'Abuja, Nigeria' },
   { Icon: FiBook,       text: 'B.Sc. Computer Science — Ajayi Crowther University (2:1)' },
   { Icon: FiGlobe,      text: 'English (Professional)  ·  Igbo (Native)' },
   { Icon: FiBriefcase,  text: 'Open to senior mobile & full-stack roles' },
