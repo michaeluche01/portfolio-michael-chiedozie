@@ -5,20 +5,23 @@ export const siteConfig = {
   tagline: 'I build mobile products that ship — and the backends that power them.',
   email: 'michaelcee2000@gmail.com',
   location: 'Abuja, Nigeria',
-  available: true, // toggle for availability badge
+  available: true,
 
   socials: {
-    github: 'https://github.com/michaeluche01',
+    github:   'https://github.com/michaeluche01',
     linkedin: 'https://linkedin.com/in/michaeluche',
-    email: 'mailto:michaelcee2000@gmail.com',
+    email:    'mailto:michaelcee2000@gmail.com',
   },
 
   nav: [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Work', href: '#work' },
+    { label: 'About',   href: '#about'   },
+    { label: 'Skills',  href: '#skills'  },
+    { label: 'Work',    href: '#work'    },
     { label: 'Contact', href: '#contact' },
   ],
 
-  resumeUrl: 'public/resume.pdf', // drop your PDF in /public
+  // import.meta.env.BASE_URL = '/portfolio-michael-chiedozie/' on GitHub Pages
+  //                          = '/' on localhost
+  // This makes the PDF resolve correctly on BOTH environments automatically.
+  resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
 };
