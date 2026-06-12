@@ -1,16 +1,136 @@
-# React + Vite
+# 🚀 Michael Chiedozie — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern developer portfolio showcasing my work as a Mobile Engineer, Full-Stack Builder, and problem solver passionate about building scalable digital products.
 
-Currently, two official plugins are available:
+## 🌍 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Portfolio Website:** https://michaeluche01.github.io/portfolio-michael-chiedozie/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 👨🏾‍💻 About Me
 
-## Expanding the ESLint configuration
+I'm Michael Chiedozie, a Mobile Engineer and Full-Stack Developer focused on building high-quality software that solves real-world problems.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+With professional experience in Flutter development and a growing focus on backend systems, AI-powered applications, and scalable architectures, I enjoy transforming ideas into production-ready products.
+
+My work spans:
+
+* Mobile Application Development
+* Full-Stack Web Development
+* API Integration & Backend Systems
+* AI-Powered Solutions
+* Product Design & Architecture
+* Technical Leadership & Collaboration
+
+---
+
+## ✨ Features
+
+* Responsive modern UI
+* Smooth user experience across devices
+* Project showcase section
+* Technical skills overview
+* Professional experience highlights
+* Contact & social links
+* Optimized performance with Vite
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* JavaScript (ES6+)
+* SCSS
+* Vite
+
+### Development Tools
+
+* Git & GitHub
+* VS Code
+* Figma
+
+### Mobile Development
+
+* Flutter
+* Dart
+
+### Backend & Database
+
+* Node.js
+* MongoDB
+* REST APIs
+
+---
+
+## 📂 Project Structure
+
+```bash
+src/
+├── assets/
+├── components/
+├── data/
+├── styles/
+├── pages/
+└── App.jsx
+```
+
+---
+
+## 🚀 Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/michaeluche01/portfolio-michael-chiedozie.git
+```
+
+### Navigate into the Project
+
+```bash
+cd portfolio-michael-chiedozie
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+## 📬 Connect With Me
+
+* GitHub: https://github.com/michaeluche01
+* LinkedIn: https://linkedin.com/in/michaeluche
+* Portfolio: https://michaeluche01.github.io/portfolio-michael-chiedozie/
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+### Built with ❤️ by Michael Chiedozie
