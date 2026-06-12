@@ -40,7 +40,7 @@ export const projects = [
     tech: ['Flutter', 'Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'React', 'Docker', 'JWT'],
     links: {
       live: null,
-      github: 'https://github.com/michaeluche01',
+      github: 'https://github.com/michaeluche01/inventory-app-showcase.git',
     },
     featured: true,
     type: 'personal',
