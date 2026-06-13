@@ -36,7 +36,7 @@ const LINKS = [
   {
     Icon: FiMapPin,
     label: 'Location',
-    value: 'Abuja, Nigeria 🇳🇬',
+    value: 'Abuja, Nigeria',
     href: null,
   },
 ];
