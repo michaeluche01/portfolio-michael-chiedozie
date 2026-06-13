@@ -1,0 +1,402 @@
+@use 'variables' as *;
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+.section {
+  padding-block: $section-pad-y;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $container-pad;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.header {
+  margin-bottom: clamp($space-10, 6vw, $space-16);
+  max-width: 640px;
+}
+
+.sectionLabel {
+  display: block;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $accent;
+  letter-spacing: $letter-wide;
+  margin-bottom: $space-3;
+}
+
+.sectionHeading {
+  font-family: $font-display;
+  font-weight: $weight-black;
+  font-size: clamp($text-2xl, 5vw, $text-4xl);
+  color: $text-primary;
+  letter-spacing: $letter-tight;
+  line-height: $line-tight;
+  margin: 0 0 $space-5;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 4rem;
+    height: 2px;
+    background: $accent;
+    border-radius: $radius-full;
+    margin-top: $space-5;
+  }
+}
+
+.intro {
+  font-family: $font-body;
+  font-size: $text-md;
+  color: $text-secondary;
+  line-height: $line-relaxed;
+  margin: 0;
+
+  @media (max-width: #{$bp-sm}) { font-size: $text-base; }
+}
+
+// ─── Two-column grid ──────────────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp($space-10, 6vw, $space-16);
+  align-items: start;
+
+  @media (max-width: #{$bp-lg}) {
+    grid-template-columns: 1fr;
+    gap: $space-10;
+  }
+}
+
+// ─── Left: links column ───────────────────────────────────────────────────────
+.linksCol {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-4;
+  border-radius: $radius-md;
+  border: 1px solid transparent;
+  transition: background $transition-base, border-color $transition-base;
+
+  &:hover {
+    background: $surface-1;
+    border-color: $border;
+  }
+}
+
+.linkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: $radius-sm;
+  background: rgba(100, 255, 218, 0.06);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  color: $accent;
+  flex-shrink: 0;
+}
+
+.linkBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.linkLabel {
+  font-family: $font-mono;
+  font-size: $text-xs;
+  color: $text-muted;
+  letter-spacing: $letter-wide;
+  text-transform: uppercase;
+}
+
+.linkValue {
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: $text-primary;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color $transition-fast;
+
+  a#{&}:hover { color: $accent; }
+}
+
+a.linkValue:hover { color: $accent; }
+
+// ─── Availability callout ────────────────────────────────────────────────────
+.availCard {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  padding: $space-5;
+  background: rgba(100, 255, 218, 0.04);
+  border: 1px solid rgba(100, 255, 218, 0.18);
+  border-radius: $radius-lg;
+}
+
+.availDot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background: $accent;
+  flex-shrink: 0;
+  margin-top: 4px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: $radius-full;
+    background: $accent;
+    animation: ripple 2.2s ease-out infinite;
+  }
+}
+
+@keyframes ripple {
+  0%        { transform: scale(0.7); opacity: 0.6; }
+  80%, 100% { transform: scale(2.4); opacity: 0;   }
+}
+
+.availTitle {
+  font-family: $font-display;
+  font-weight: $weight-bold;
+  font-size: $text-sm;
+  color: $text-primary;
+  margin: 0 0 2px;
+}
+
+.availSub {
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: $text-secondary;
+  margin: 0;
+  line-height: $line-snug;
+}
+
+// ─── Right: form column ───────────────────────────────────────────────────────
+.formCol {
+  background: $surface-1;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  padding: clamp($space-6, 4vw, $space-10);
+
+  // Top shimmer — matches Hero terminal card pattern
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; inset-inline: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(100,255,218,0.35), transparent);
+  }
+}
+
+// ─── Form ────────────────────────────────────────────────────────────────────
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+// ─── Field ───────────────────────────────────────────────────────────────────
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.label {
+  font-family: $font-mono;
+  font-size: $text-xs;
+  color: $text-secondary;
+  letter-spacing: $letter-wide;
+}
+
+.input {
+  width: 100%;
+  background: $bg-elevated;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: $text-primary;
+  outline: none;
+  transition: border-color $transition-base, box-shadow $transition-base;
+  appearance: none;
+
+  &::placeholder {
+    color: $text-muted;
+  }
+
+  &:focus {
+    border-color: rgba(100, 255, 218, 0.45);
+    box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.08);
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: $line-relaxed;
+}
+
+// Error state — red border + message
+.fieldError .input {
+  border-color: rgba(248, 113, 113, 0.5);
+
+  &:focus {
+    border-color: rgba(248, 113, 113, 0.7);
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.08);
+  }
+}
+
+.errorMsg {
+  font-family: $font-mono;
+  font-size: $text-xs;
+  color: #f87171;
+  letter-spacing: $letter-wide;
+}
+
+// ─── Error banner ─────────────────────────────────────────────────────────────
+.errorBanner {
+  padding: $space-3 $space-4;
+  background: rgba(248, 113, 113, 0.06);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: $radius-md;
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: #f87171;
+  line-height: $line-snug;
+
+  a { color: #fca5a5; text-decoration: underline; }
+}
+
+// ─── Submit button ────────────────────────────────────────────────────────────
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  border-radius: $radius-md;
+  border: 1px solid $accent;
+  background: transparent;
+  color: $accent;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  letter-spacing: $letter-wide;
+  cursor: pointer;
+  transition: background $transition-base, box-shadow $transition-base, transform $transition-base, opacity $transition-base;
+  width: 100%;
+
+  &:hover:not(:disabled) {
+    background: $accent-dim;
+    box-shadow: $shadow-accent;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+// Spinner — simple CSS ring
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(100, 255, 218, 0.25);
+  border-top-color: $accent;
+  border-radius: $radius-full;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ─── Success state ────────────────────────────────────────────────────────────
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-4;
+  padding: $space-10 $space-6;
+}
+
+.successIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: $radius-full;
+  border: 2px solid $accent;
+  background: rgba(100, 255, 218, 0.08);
+  font-size: $text-xl;
+  color: $accent;
+  font-weight: $weight-bold;
+}
+
+.successTitle {
+  font-family: $font-display;
+  font-weight: $weight-black;
+  font-size: $text-xl;
+  color: $text-primary;
+  margin: 0;
+}
+
+.successSub {
+  font-family: $font-body;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-relaxed;
+  margin: 0;
+  max-width: 32ch;
+}
+
+.resetBtn {
+  font-family: $font-mono;
+  font-size: $text-xs;
+  color: $accent;
+  background: transparent;
+  border: 1px solid rgba(100, 255, 218, 0.25);
+  border-radius: $radius-md;
+  padding: $space-2 $space-5;
+  cursor: pointer;
+  letter-spacing: $letter-wide;
+  transition: background $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    background: $accent-dim;
+    border-color: rgba(100, 255, 218, 0.4);
+  }
+}
