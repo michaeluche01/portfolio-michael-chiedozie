@@ -133,4 +133,4 @@ This project is open-source and available under the MIT License.
 
 ---
 
-### Built with ❤️ by Michael Chiedozie
+### Built and designed by Michael Chiedozie
