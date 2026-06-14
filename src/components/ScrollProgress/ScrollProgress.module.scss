@@ -1,0 +1,20 @@
+@use 'variables' as *;
+
+.track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: $z-toast; // above everything including nav
+  pointer-events: none;
+}
+
+.bar {
+  height: 100%;
+  background: linear-gradient(90deg, $accent 0%, rgba(167, 139, 250, 0.9) 100%);
+  border-radius: 0 $radius-full $radius-full 0;
+  transition: width 80ms linear;
+  box-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+}

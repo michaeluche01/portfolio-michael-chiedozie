@@ -1,10 +1,6 @@
 @use 'variables' as *;
 
-// ─── Section ──────────────────────────────────────────────────────────────────
-.section {
-  padding-block: $section-pad-y;
-  position: relative;
-}
+.section { padding-block: $section-pad-y; position: relative; }
 
 .container {
   width: 100%;
@@ -14,9 +10,7 @@
 }
 
 // ─── Header ───────────────────────────────────────────────────────────────────
-.header {
-  margin-bottom: clamp($space-12, 8vw, $space-20);
-}
+.header { margin-bottom: clamp($space-12, 8vw, $space-20); }
 
 .sectionLabel {
   display: block;
@@ -51,7 +45,7 @@
 .featured {
   display: flex;
   flex-direction: column;
-  gap: clamp($space-16, 10vw, $space-24);
+  gap: clamp($space-20, 12vw, $space-32);
 }
 
 // ─── Card ─────────────────────────────────────────────────────────────────────
@@ -67,13 +61,9 @@
   }
 }
 
-// Reversed: visual on left, content on right
 .cardReversed {
   .cardVisual { order: -1; }
-
-  @media (max-width: #{$bp-lg}) {
-    .cardVisual { order: 0; }
-  }
+  @media (max-width: #{$bp-lg}) { .cardVisual { order: 0; } }
 }
 
 // ─── Card content ─────────────────────────────────────────────────────────────
@@ -91,313 +81,286 @@
   flex-wrap: wrap;
 }
 
-.cardNum {
-  font-family: $font-mono;
-  font-size: $text-xs;
-  color: $accent;
-  letter-spacing: $letter-wider;
-  font-weight: $weight-medium;
-}
-
-.metaSep { color: $text-muted; }
-
-.cardCompany {
-  font-family: $font-mono;
-  font-size: $text-xs;
-  color: $text-muted;
-  letter-spacing: $letter-wide;
-}
-
+.cardNum    { font-family: $font-mono; font-size: $text-xs; color: $accent; letter-spacing: $letter-wider; font-weight: $weight-medium; }
+.metaSep    { color: $text-muted; }
+.cardCompany{ font-family: $font-mono; font-size: $text-xs; color: $text-muted; letter-spacing: $letter-wide; }
 .cardPeriod {
-  font-family: $font-mono;
-  font-size: $text-xs;
-  color: $text-muted;
-  letter-spacing: $letter-wide;
-  margin-left: auto;
-
+  font-family: $font-mono; font-size: $text-xs; color: $text-muted;
+  letter-spacing: $letter-wide; margin-left: auto;
   @media (max-width: #{$bp-sm}) { margin-left: 0; }
 }
 
-// Type badge — color injected via inline style
 .typeBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-2;
-  padding: 3px $space-3;
-  border-radius: $radius-full;
-  border: 1px solid currentColor;
-  font-family: $font-mono;
-  font-size: $text-xs;
-  letter-spacing: $letter-wide;
-  width: fit-content;
-
-  &::before {
-    content: '';
-    width: 5px; height: 5px;
-    border-radius: $radius-full;
-    background: currentColor;
-    flex-shrink: 0;
-  }
+  display: inline-flex; align-items: center; gap: $space-2;
+  padding: 3px $space-3; border-radius: $radius-full;
+  border: 1px solid currentColor; font-family: $font-mono;
+  font-size: $text-xs; letter-spacing: $letter-wide; width: fit-content;
+  &::before { content: ''; width: 5px; height: 5px; border-radius: $radius-full; background: currentColor; flex-shrink: 0; }
 }
 
 .cardTitle {
-  font-family: $font-display;
-  font-weight: $weight-black;
+  font-family: $font-display; font-weight: $weight-black;
   font-size: clamp($text-xl, 3vw, $text-3xl);
-  color: $text-primary;
-  letter-spacing: $letter-tight;
-  line-height: $line-snug;
-  margin: 0;
+  color: $text-primary; letter-spacing: $letter-tight; line-height: $line-snug; margin: 0;
 }
-
-.cardTagline {
-  font-family: $font-mono;
-  font-size: $text-sm;
-  color: $accent;
-  letter-spacing: $letter-wide;
-  margin: 0;
-}
-
-.cardDesc {
-  font-family: $font-body;
-  font-size: $text-base;
-  color: $text-secondary;
-  line-height: $line-relaxed;
-  margin: 0;
-
+.cardTagline { font-family: $font-mono; font-size: $text-sm; color: $accent; letter-spacing: $letter-wide; margin: 0; }
+.cardDesc    { font-family: $font-body; font-size: $text-base; color: $text-secondary; line-height: $line-relaxed; margin: 0;
   @media (max-width: #{$bp-sm}) { font-size: $text-sm; }
 }
 
-// ─── Highlights ───────────────────────────────────────────────────────────────
-.highlights {
-  display: flex;
-  flex-direction: column;
-  gap: $space-2;
-}
+.highlights { display: flex; flex-direction: column; gap: $space-2; }
+.highlight  { display: flex; align-items: flex-start; gap: $space-3; font-family: $font-body; font-size: $text-sm; color: $text-secondary; line-height: $line-snug; }
+.hDot       { width: 5px; height: 5px; border-radius: $radius-full; background: $accent; flex-shrink: 0; margin-top: 5px; }
 
-.highlight {
-  display: flex;
-  align-items: flex-start;
-  gap: $space-3;
-  font-family: $font-body;
-  font-size: $text-sm;
-  color: $text-secondary;
-  line-height: $line-snug;
-}
+.techStack  { display: flex; flex-wrap: wrap; gap: $space-2; }
+.techTag    { font-family: $font-mono; font-size: $text-xs; color: $accent; padding: 3px $space-3; border-radius: $radius-sm; border: 1px solid rgba(100,255,218,0.15); background: rgba(100,255,218,0.04); letter-spacing: $letter-wide; white-space: nowrap; }
 
-.hDot {
-  width: 5px; height: 5px;
-  border-radius: $radius-full;
-  background: $accent;
-  flex-shrink: 0;
-  margin-top: 5px;
-}
-
-// ─── Shared: tech tags ────────────────────────────────────────────────────────
-.techStack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-2;
-}
-
-.techTag {
-  font-family: $font-mono;
-  font-size: $text-xs;
-  color: $accent;
-  padding: 3px $space-3;
-  border-radius: $radius-sm;
-  border: 1px solid rgba(100, 255, 218, 0.15);
-  background: rgba(100, 255, 218, 0.04);
-  letter-spacing: $letter-wide;
-  white-space: nowrap;
-}
-
-// ─── Card links ───────────────────────────────────────────────────────────────
-.cardLinks {
-  display: flex;
-  align-items: center;
-  gap: $space-3;
-  flex-wrap: wrap;
-  margin-top: $space-2;
-}
+.cardLinks  { display: flex; align-items: center; gap: $space-3; flex-wrap: wrap; margin-top: $space-2; }
 
 .btnPrimary {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-2;
-  padding: $space-2 $space-5;
-  border-radius: $radius-md;
-  border: 1px solid $accent;
-  color: $accent;
-  font-family: $font-mono;
-  font-size: $text-xs;
-  letter-spacing: $letter-wide;
+  display: inline-flex; align-items: center; gap: $space-2;
+  padding: $space-2 $space-5; border-radius: $radius-md; border: 1px solid $accent;
+  color: $accent; font-family: $font-mono; font-size: $text-xs; letter-spacing: $letter-wide;
   transition: background $transition-base, box-shadow $transition-base, transform $transition-base;
-
-  &:hover {
-    background: $accent-dim;
-    box-shadow: $shadow-accent;
-    transform: translateY(-2px);
-  }
+  &:hover { background: $accent-dim; box-shadow: $shadow-accent; transform: translateY(-2px); }
 }
-
 .btnGhost {
+  display: inline-flex; align-items: center; gap: $space-2;
+  padding: $space-2 $space-5; border-radius: $radius-md; border: 1px solid $border;
+  color: $text-secondary; font-family: $font-mono; font-size: $text-xs; letter-spacing: $letter-wide;
+  transition: border-color $transition-base, color $transition-base, transform $transition-base;
+  &:hover { border-color: $text-muted; color: $text-primary; transform: translateY(-2px); }
+}
+.privateNote { display: inline-flex; align-items: center; gap: $space-2; font-family: $font-mono; font-size: $text-xs; color: $text-muted; font-style: italic; }
+
+.statusPill {
   display: inline-flex;
   align-items: center;
-  gap: $space-2;
-  padding: $space-2 $space-5;
-  border-radius: $radius-md;
-  border: 1px solid $border;
-  color: $text-secondary;
+  width: fit-content;
   font-family: $font-mono;
   font-size: $text-xs;
   letter-spacing: $letter-wide;
-  transition: border-color $transition-base, color $transition-base, transform $transition-base;
-
-  &:hover {
-    border-color: $text-muted;
-    color: $text-primary;
-    transform: translateY(-2px);
-  }
+  padding: 3px $space-3;
+  border-radius: $radius-full;
+  border: 1px solid currentColor;
+  opacity: 0.8;
 }
 
-.privateNote {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-2;
-  font-family: $font-mono;
-  font-size: $text-xs;
-  color: $text-muted;
-  font-style: italic;
-}
-
-// ─── Card visual panel ────────────────────────────────────────────────────────
+// ─── Card visual: phone container ─────────────────────────────────────────────
 .cardVisual {
-  // Use aspect-ratio so height is always proportional — no more min-height hacks
-  aspect-ratio: 4 / 3;
-  border-radius: 16px;
-  border: 1px solid $border;
-  overflow: hidden;
-  position: relative;
   display: flex;
-  flex-direction: column;
-
-  // Per-project shimmer color via --va CSS var set in JSX
-  &::before {
-    content: '';
-    position: absolute; top: 0; inset-inline: 0; height: 1px; z-index: 1;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--va, rgba(100, 255, 218, 0.4)) 50%,
-      transparent 100%
-    );
-  }
-
-  box-shadow:
-    0 0 0 1px rgba(100, 255, 218, 0.03),
-    0 24px 64px rgba(0, 0, 0, 0.5);
-
-  transition: transform 350ms $ease-out-quart, box-shadow 350ms $ease-out-quart;
-
-  &:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0 0 0 1px rgba(100, 255, 218, 0.07),
-      0 32px 80px rgba(0, 0, 0, 0.6),
-      0 0 40px rgba(100, 255, 218, 0.06);
-  }
+  align-items: center;
+  justify-content: center;
+  padding: $space-6 0;
 
   @media (max-width: #{$bp-lg}) {
-    // On mobile/tablet: full-width, shorter aspect ratio
-    width: 100%;
-    aspect-ratio: 16 / 9;
-  }
-
-  @media (max-width: #{$bp-sm}) {
-    aspect-ratio: 3 / 2;
+    padding: $space-4 0;
   }
 }
 
-// macOS traffic light bar
-.visualBar {
+// ─── Phone mockup ─────────────────────────────────────────────────────────────
+.phoneWrap {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: $space-2;
-  padding: $space-3 $space-5;
-  background: rgba(0, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  flex-shrink: 0;
-
-  > span {
-    width: 10px; height: 10px;
-    border-radius: $radius-full;
-    flex-shrink: 0;
-
-    &:nth-child(1) { background: #ff5f57; }
-    &:nth-child(2) { background: #febc2e; }
-    &:nth-child(3) { background: #28c840; }
-  }
+  justify-content: center;
 }
 
-.visualBody {
-  flex: 1;
+.phoneGlow {
+  position: absolute;
+  inset: -20% -30%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.phone {
+  position: relative;
+  z-index: 1;
+  width: 220px;
+  border-radius: 36px;
+  background: #0d0d14;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 32px 80px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  padding: 14px 8px 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: $space-6;
-  gap: $space-4;
-
-  @media (max-width: #{$bp-sm}) { padding: $space-4; }
-}
-
-.chipGrid {
-  display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: $space-2;
+
+  // Scale down gracefully
+  @media (max-width: #{$bp-xl}) { width: 200px; }
+  @media (max-width: #{$bp-lg}) { width: 220px; }
+  @media (max-width: #{$bp-sm}) { width: 190px; }
 }
 
-.chip {
-  padding: $space-1 $space-3;
+// Dynamic island
+.island {
+  width: 72px;
+  height: 24px;
+  background: #000;
   border-radius: $radius-full;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  font-family: $font-mono;
-  font-size: $text-xs;
-  color: $text-secondary;
-  letter-spacing: $letter-wide;
-  white-space: nowrap;
-  opacity: 0.7;
-  transition: opacity $transition-base;
-
-  .cardVisual:hover & { opacity: 1; }
+  flex-shrink: 0;
 }
 
-.visualFooter {
+// Screen area
+.screenWrap {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #08080f;
+  flex: 1;
+}
+
+// Home indicator
+.homeBar {
+  width: 80px;
+  height: 4px;
+  background: rgba(255,255,255,0.18);
+  border-radius: $radius-full;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+// ─── Screen content ───────────────────────────────────────────────────────────
+.screen {
+  padding: 10px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 340px;
+}
+
+.statusBar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: $space-4;
-  flex-wrap: wrap;
-}
-
-.watermark {
-  font-family: $font-display;
-  font-weight: $weight-black;
-  font-size: clamp($text-lg, 3.5vw, $text-3xl);
-  color: rgba(255, 255, 255, 0.06);
-  letter-spacing: $letter-tight;
-  line-height: 1;
-  white-space: nowrap;
-  user-select: none;
-}
-
-.visualStatus {
+  align-items: center;
   font-family: $font-mono;
-  font-size: $text-xs;
-  letter-spacing: $letter-wide;
-  white-space: nowrap;
-  flex-shrink: 0;
+  font-size: 9px;
+  color: $text-secondary;
+  padding-bottom: 4px;
+}
+
+.statusIcons { display: flex; align-items: center; gap: 4px; }
+
+.battery {
+  display: inline-block;
+  width: 14px; height: 7px;
+  border: 1px solid $text-secondary;
+  border-radius: 2px;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 2px; top: 1px;
+    width: 8px; height: 3px;
+    background: $text-secondary;
+    border-radius: 1px;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    right: -3px; top: 50%;
+    transform: translateY(-50%);
+    width: 2px; height: 4px;
+    background: $text-secondary;
+    border-radius: 0 1px 1px 0;
+  }
+}
+
+.appHeader { display: flex; flex-direction: column; gap: 1px; margin-bottom: 2px; }
+.appGreeting { font-family: $font-mono; font-size: 9px; color: $text-muted; letter-spacing: 0.05em; }
+.appTitle    { font-family: $font-display; font-weight: $weight-black; font-size: 14px; color: $text-primary; margin: 0; letter-spacing: -0.02em; }
+
+// Balance card (MehticPay)
+.balanceCard {
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 2px 0;
+}
+
+.tealCard   { background: linear-gradient(135deg, rgba(100,255,218,0.18) 0%, rgba(13,148,136,0.12) 100%); border: 1px solid rgba(100,255,218,0.2); }
+.purpleCard { background: linear-gradient(135deg, rgba(167,139,250,0.18) 0%, rgba(124,58,237,0.10) 100%); border: 1px solid rgba(167,139,250,0.2); }
+.amberCard  { background: linear-gradient(135deg, rgba(251,191,36,0.18) 0%, rgba(245,158,11,0.10) 100%); border: 1px solid rgba(251,191,36,0.2); }
+
+.balanceLabel  { font-family: $font-mono; font-size: 8px; color: rgba(100,255,218,0.7); letter-spacing: 0.06em; }
+.balanceAmount {
+  font-family: $font-display; font-weight: $weight-black; font-size: 18px; color: $text-primary; letter-spacing: -0.03em;
+  span { font-size: 11px; opacity: 0.6; }
+}
+
+.cardRow       { display: flex; gap: 4px; margin-top: 4px; }
+.quickAction   { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; font-family: $font-mono; font-size: 7px; color: $text-secondary; }
+.qIcon         { width: 20px; height: 20px; border-radius: 6px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; color: $accent; }
+
+.txLabel { font-family: $font-mono; font-size: 8px; color: $text-muted; letter-spacing: 0.06em; text-transform: uppercase; margin: 2px 0 0; }
+
+.txRow {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  &:last-child { border-bottom: none; }
+}
+.txDot  { width: 5px; height: 5px; border-radius: $radius-full; background: $accent; flex-shrink: 0; }
+.txName { font-family: $font-body; font-size: 9px; color: $text-secondary; flex: 1; line-height: 1.2; }
+.txAmt  { font-family: $font-mono; font-size: 9px; font-weight: $weight-bold; flex-shrink: 0; }
+.txSub  { font-family: $font-mono; font-size: 8px; color: $text-muted; flex-shrink: 0; }
+
+// Stat cards (Throve)
+.statRow  { display: flex; gap: 6px; margin: 2px 0; }
+.statCard {
+  flex: 1; border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 8px 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.statVal  { font-family: $font-display; font-weight: $weight-black; font-size: 14px; color: var(--sc, #{$accent}); letter-spacing: -0.02em; }
+.statLbl  { font-family: $font-mono; font-size: 7px; color: $text-muted; text-align: center; }
+
+.alertCard {
+  display: flex; align-items: center; gap: 8px;
+  border-radius: 10px; padding: 8px 10px; margin: 2px 0;
+}
+.alertDot {
+  width: 7px; height: 7px; border-radius: $radius-full; background: #a78bfa;
+  flex-shrink: 0; animation: ripple 2s ease-out infinite;
+}
+.alertTitle { font-family: $font-display; font-weight: $weight-bold; font-size: 10px; color: $text-primary; margin: 0; }
+.alertSub   { font-family: $font-mono; font-size: 8px; color: #a78bfa; margin: 0; }
+
+// Points (Yulii)
+.pointsBadge {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px; border-radius: 12px; margin: 2px 0;
+}
+.pointsVal { font-family: $font-display; font-weight: $weight-black; font-size: 20px; color: #fbbf24; letter-spacing: -0.03em; }
+.pointsLbl { font-family: $font-mono; font-size: 8px; color: rgba(251,191,36,0.7); letter-spacing: 0.05em; }
+
+.taskRow {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  &:last-child { border-bottom: none; }
+}
+.taskDone .taskName { color: $text-muted; text-decoration: line-through; text-decoration-color: rgba(100,255,218,0.3); }
+.taskCheck {
+  width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: $weight-bold;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: $accent;
+  .taskDone & { background: rgba(100,255,218,0.12); border-color: rgba(100,255,218,0.3); }
+}
+.taskName { font-family: $font-body; font-size: 9px; color: $text-secondary; flex: 1; line-height: 1.2; }
+.taskPts  { font-family: $font-mono; font-size: 9px; font-weight: $weight-bold; flex-shrink: 0; }
+
+@keyframes ripple {
+  0%        { transform: scale(0.7); opacity: 0.6; }
+  80%, 100% { transform: scale(2.4); opacity: 0;   }
 }
 
 // ─── Other projects ───────────────────────────────────────────────────────────
@@ -406,92 +369,19 @@
   padding-top: $space-12;
   border-top: 1px solid $border;
 }
+.othersLabel { font-family: $font-mono; font-size: $text-sm; color: $text-muted; letter-spacing: $letter-wide; margin-bottom: $space-8; }
+.othersGrid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: $space-5; }
 
-.othersLabel {
-  font-family: $font-mono;
-  font-size: $text-sm;
-  color: $text-muted;
-  letter-spacing: $letter-wide;
-  margin-bottom: $space-8;
-}
-
-.othersGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: $space-5;
-}
-
-// ─── Small card ───────────────────────────────────────────────────────────────
 .smallCard {
-  background: $surface-1;
-  border: 1px solid $border;
-  border-radius: $radius-lg;
-  padding: $space-6;
-  display: flex;
-  flex-direction: column;
-  gap: $space-4;
+  background: $surface-1; border: 1px solid $border; border-radius: $radius-lg;
+  padding: $space-6; display: flex; flex-direction: column; gap: $space-4;
   transition: border-color $transition-base, box-shadow $transition-base, transform $transition-base;
-
-  &:hover {
-    border-color: $border-accent;
-    box-shadow: $shadow-card, $shadow-accent;
-    transform: translateY(-3px);
-  }
+  &:hover { border-color: $border-accent; box-shadow: $shadow-card, $shadow-accent; transform: translateY(-3px); }
 }
-
-.smallTop {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.smallIcon { color: $accent; opacity: 0.6; }
-
-.smallLinks {
-  display: flex;
-  gap: $space-4;
-
-  a {
-    color: $text-muted;
-    display: flex;
-    align-items: center;
-    transition: color $transition-fast, transform $transition-fast;
-
-    &:hover { color: $accent; transform: translateY(-2px); }
-  }
-}
-
-.smallTitle {
-  font-family: $font-display;
-  font-weight: $weight-bold;
-  font-size: $text-lg;
-  color: $text-primary;
-  letter-spacing: $letter-tight;
-  margin: 0;
-}
-
-.smallTagline {
-  font-family: $font-mono;
-  font-size: $text-xs;
-  color: $accent;
-  letter-spacing: $letter-wide;
-  margin: 0;
-}
-
-.smallDesc {
-  font-family: $font-body;
-  font-size: $text-sm;
-  color: $text-secondary;
-  line-height: $line-relaxed;
-  margin: 0;
-  flex: 1;
-}
-
-.smallFooter {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: $space-3;
-  flex-wrap: wrap;
-  margin-top: auto;
-}
+.smallTop   { display: flex; justify-content: space-between; align-items: center; }
+.smallIcon  { color: $accent; opacity: 0.6; }
+.smallLinks { display: flex; gap: $space-4; a { color: $text-muted; display: flex; align-items: center; transition: color $transition-fast, transform $transition-fast; &:hover { color: $accent; transform: translateY(-2px); } } }
+.smallTitle   { font-family: $font-display; font-weight: $weight-bold; font-size: $text-lg; color: $text-primary; letter-spacing: $letter-tight; margin: 0; }
+.smallTagline { font-family: $font-mono; font-size: $text-xs; color: $accent; letter-spacing: $letter-wide; margin: 0; }
+.smallDesc    { font-family: $font-body; font-size: $text-sm; color: $text-secondary; line-height: $line-relaxed; margin: 0; flex: 1; }
+.smallFooter  { display: flex; align-items: flex-end; justify-content: space-between; gap: $space-3; flex-wrap: wrap; margin-top: auto; }
