@@ -330,98 +330,162 @@
 // ─── Screenshot side ──────────────────────────────────────────────────────────
 .screenshotWrap {
   position: relative;
-  background: rgba(0,0,0,0.3);
+  background: radial-gradient(ellipse at center, rgba(30,30,46,1) 0%, rgba(10,10,15,1) 100%);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-5;
   border-right: 1px solid $border;
+  padding: $space-8 $space-6;
 
   @media (max-width: #{$bp-lg}) {
     border-right: none;
     border-bottom: 1px solid $border;
-    max-height: 360px;
+    padding: $space-6;
   }
 }
 
-.screenshotFrame {
-  flex: 1;
+// ─── iPhone 14 Pro Max frame ──────────────────────────────────────────────────
+// Outer dimensions: 430×932pt → CSS ratio ≈ 9:19.5
+// We render at 220px wide which gives ~476px tall
+.phoneFrame {
+  position: relative;
+  width: 220px;
+  aspect-ratio: 430 / 932;
+  border-radius: 44px;
+  background: #1a1a1e;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 40px 100px rgba(0,0,0,0.85),
+    0 0 0 6px #111115;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-}
-
-.browserBar {
-  display: flex;
   align-items: center;
-  gap: $space-2;
-  padding: $space-2 $space-4;
-  background: rgba(0,0,0,0.4);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 14px 7px 10px;
   flex-shrink: 0;
+
+  // Side buttons
+  &::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 22%;
+    width: 3px;
+    height: 10%;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px 0 0 2px;
+    box-shadow: 0 16px 0 rgba(255,255,255,0.12), 0 30px 0 rgba(255,255,255,0.12);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 26%;
+    width: 3px;
+    height: 14%;
+    background: rgba(255,255,255,0.12);
+    border-radius: 0 2px 2px 0;
+  }
+
+  @media (max-width: #{$bp-lg}) {
+    width: 180px;
+  }
 }
 
-.browserDot {
-  width: 9px; height: 9px; border-radius: $radius-full; flex-shrink: 0;
-  &[data-color='red']    { background: #ff5f57; }
-  &[data-color='yellow'] { background: #febc2e; }
-  &[data-color='green']  { background: #28c840; }
+// Dynamic island
+.phoneDynamicIsland {
+  width: 80px;
+  height: 26px;
+  background: #000;
+  border-radius: 20px;
+  flex-shrink: 0;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2;
+
+  // Camera dot
+  &::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    box-shadow: 0 0 0 2px rgba(100,150,255,0.15);
+  }
 }
 
-.browserUrl {
+// Screen area — screenshot sits inside here
+.phoneScreen {
   flex: 1;
-  background: rgba(255,255,255,0.06);
-  border-radius: 4px;
-  padding: 2px $space-3;
-  font-family: $font-mono;
-  font-size: 10px;
-  color: $text-muted;
-  letter-spacing: 0;
-  white-space: nowrap;
+  width: 100%;
+  border-radius: 34px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  background: #000;
+  position: relative;
 }
 
 .screenshotImg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top;
+  // contain = full screenshot always visible, no cropping
+  object-fit: contain;
+  object-position: top center;
   display: block;
 }
 
-// Prev / next arrows overlay
-.screenshotNav {
-  position: absolute;
-  inset: 40px 0 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 $space-3;
-  pointer-events: none;
+// Home indicator
+.phoneHomeBar {
+  width: 72px;
+  height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: $radius-full;
+  margin-top: 6px;
+  flex-shrink: 0;
 }
 
-.navArrow {
-  pointer-events: all;
+// ─── Next-screenshot hint ─────────────────────────────────────────────────────
+.nextHint {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 36px; height: 36px;
+  gap: $space-2;
+  padding: $space-2 $space-4;
   border-radius: $radius-full;
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(10,10,15,0.8);
-  color: $text-primary;
+  backdrop-filter: blur(8px);
+  font-family: $font-mono;
+  font-size: $text-xs;
+  color: $text-secondary;
+  letter-spacing: $letter-wide;
   cursor: pointer;
-  transition: background $transition-fast, border-color $transition-fast, transform $transition-fast;
+  transition: border-color $transition-fast, color $transition-fast;
 
-  &:hover:not(:disabled) { background: rgba(10,10,15,0.95); border-color: rgba(255,255,255,0.25); transform: scale(1.08); }
-  &:disabled { opacity: 0.25; cursor: not-allowed; }
+  svg { animation: nudge 1.4s ease-in-out infinite; }
+
+  &:hover {
+    border-color: rgba(100,255,218,0.3);
+    color: $accent;
+  }
 }
 
-// Dot pagination
+@keyframes nudge {
+  0%, 100% { transform: translateX(0);   }
+  60%       { transform: translateX(4px); }
+}
+
+// ─── Dot pagination ───────────────────────────────────────────────────────────
 .dots {
   display: flex;
   justify-content: center;
   gap: $space-2;
-  padding: $space-3;
   flex-shrink: 0;
 }
 
@@ -432,7 +496,6 @@
   border: none;
   cursor: pointer;
   transition: background $transition-base, transform $transition-base;
-
   &:hover { transform: scale(1.3); }
 }
 

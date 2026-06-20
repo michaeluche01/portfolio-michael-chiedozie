@@ -209,13 +209,19 @@ function FeaturedCard({ project, index, reversed, hasScreenshots, onViewScreensh
 
 // ─── Project modal ─────────────────────────────────────────────────────────────
 function ProjectModal({ projectId, project, screenshots, onClose }) {
-  const [current, setCurrent] = useState(0);
+  const [current,  setCurrent]  = useState(0);
+  const [showHint, setShowHint] = useState(false);
   const total = screenshots.length;
 
-  const prev = useCallback(() => setCurrent((c) => Math.max(c - 1, 0)),         []);
-  const next = useCallback(() => setCurrent((c) => Math.min(c + 1, total - 1)), [total]);
+  const navigate = useCallback((dir) => {
+    setShowHint(false);
+    setCurrent((c) => Math.max(0, Math.min(c + dir, total - 1)));
+  }, [total]);
 
-  // Keyboard navigation + body scroll lock
+  const prev = useCallback(() => navigate(-1), [navigate]);
+  const next = useCallback(() => navigate(+1), [navigate]);
+
+  // Keyboard nav + body scroll lock
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape')     onClose();
@@ -230,8 +236,15 @@ function ProjectModal({ projectId, project, screenshots, onClose }) {
     };
   }, [onClose, next, prev]);
 
-  // Reset to first screenshot when project changes
-  useEffect(() => { setCurrent(0); }, [projectId]);
+  // Reset on open; show next-hint after 1.2s if multiple screenshots
+  useEffect(() => {
+    setCurrent(0);
+    setShowHint(false);
+    if (screenshots.length > 1) {
+      const t = setTimeout(() => setShowHint(true), 1200);
+      return () => clearTimeout(t);
+    }
+  }, [projectId, screenshots.length]);
 
   if (!screenshots.length) return null;
 
@@ -277,60 +290,34 @@ function ProjectModal({ projectId, project, screenshots, onClose }) {
           </button>
         </div>
 
-        {/* ── Main body: screenshot + explanation ── */}
+        {/* ── Main body ── */}
         <div className={styles.modalBody}>
 
-          {/* Screenshot side */}
+          {/* ── Left: phone mockup ── */}
           <div className={styles.screenshotWrap}>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
-                className={styles.screenshotFrame}
+                className={styles.phoneFrame}
                 initial={{ opacity: 0, x: 20  }}
                 animate={{ opacity: 1, x: 0   }}
                 exit={{    opacity: 0, x: -20  }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               >
-                {/* Browser chrome */}
-                <div className={styles.browserBar}>
-                  <span className={styles.browserDot} data-color="red"    />
-                  <span className={styles.browserDot} data-color="yellow" />
-                  <span className={styles.browserDot} data-color="green"  />
-                  <div className={styles.browserUrl}>
-                    {project.title} · {shot.caption}
-                  </div>
+                <div className={styles.phoneDynamicIsland} />
+                <div className={styles.phoneScreen}>
+                  <img
+                    src={shot.img}
+                    alt={`${project.title} — ${shot.caption}`}
+                    className={styles.screenshotImg}
+                    loading="eager"
+                    decoding="async"
+                  />
                 </div>
-                <img
-                  src={shot.img}
-                  alt={`${project.title} — ${shot.caption}`}
-                  className={styles.screenshotImg}
-                  loading="eager"
-                  decoding="async"
-                />
+                <div className={styles.phoneHomeBar} />
               </motion.div>
             </AnimatePresence>
-
-            {/* Prev / Next arrows */}
-            {total > 1 && (
-              <div className={styles.screenshotNav}>
-                <button
-                  className={styles.navArrow}
-                  onClick={prev}
-                  disabled={current === 0}
-                  aria-label="Previous screenshot"
-                >
-                  <FiChevronLeft size={20} />
-                </button>
-                <button
-                  className={styles.navArrow}
-                  onClick={next}
-                  disabled={current === total - 1}
-                  aria-label="Next screenshot"
-                >
-                  <FiChevronRight size={20} />
-                </button>
-              </div>
-            )}
 
             {/* Dot pagination */}
             {total > 1 && (
@@ -340,7 +327,7 @@ function ProjectModal({ projectId, project, screenshots, onClose }) {
                     key={i}
                     className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
                     style={i === current ? { background: visual.accent } : {}}
-                    onClick={() => setCurrent(i)}
+                    onClick={() => { setShowHint(false); setCurrent(i); }}
                     role="tab"
                     aria-selected={i === current}
                     aria-label={`Screenshot ${i + 1}`}
@@ -348,9 +335,27 @@ function ProjectModal({ projectId, project, screenshots, onClose }) {
                 ))}
               </div>
             )}
+
+            {/* Next-screenshot hint — appears after 1.2s, hides on interact */}
+            <AnimatePresence>
+              {showHint && current < total - 1 && (
+                <motion.button
+                  className={styles.nextHint}
+                  initial={{ opacity: 0, y: 8  }}
+                  animate={{ opacity: 1, y: 0  }}
+                  exit={{    opacity: 0, y: 8  }}
+                  transition={{ duration: 0.3 }}
+                  onClick={next}
+                  aria-label="Next screenshot"
+                >
+                  Next screen
+                  <FiChevronRight size={13} />
+                </motion.button>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* Explanation side */}
+          {/* ── Right: explanation ── */}
           <div className={styles.explanationPanel}>
             <div className={styles.accentLine} style={{ background: visual.accent }} />
 
@@ -369,14 +374,12 @@ function ProjectModal({ projectId, project, screenshots, onClose }) {
               </motion.div>
             </AnimatePresence>
 
-            {/* Tech stack */}
             <div className={styles.modalTechStack}>
               {project.tech.map((t) => (
                 <span key={t} className={styles.modalTechTag}>{t}</span>
               ))}
             </div>
 
-            {/* Links */}
             <div className={styles.modalLinks}>
               {project.links.live && (
                 <a href={project.links.live} target="_blank" rel="noreferrer" className={styles.modalBtnPrimary}>
