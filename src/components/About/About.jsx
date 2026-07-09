@@ -7,6 +7,13 @@ import styles from './About.module.scss';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const EXPERIENCE = [
+   {
+    role: 'Full-Stack Developer & Technical SEO Specialist',
+    company: 'Codelab Projects',
+    period: 'Jun 2026 – Present',
+    note: 'Build and maintain client web apps and WordPress sites, integrate APIs, and drive technical SEO audits and performance monitoring.',
+    accent: '#f87171',
+  },
   {
     role: 'Flutter Mobile Engineer',
     company: 'Mehtic Technology',
